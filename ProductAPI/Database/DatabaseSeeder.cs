@@ -10,19 +10,20 @@ internal static class DatabaseSeeder
         var dbContext = scope.ServiceProvider.GetRequiredService<ProductsDbContext>();
 
         await dbContext.Database.EnsureCreatedAsync();
-        await SeedProducts(dbContext);
+        await SeedProducts(dbContext, 50);
     }
     
-    private static async Task SeedProducts(ProductsDbContext dbContext)
+    public static async Task SeedProducts(ProductsDbContext dbContext, int count)
     {
         var productFaker = new Faker<Product>()
             .RuleFor(x => x.Id, f => f.Random.Uuid())
             .RuleFor(x => x.Name, f => f.Commerce.ProductName())
             .RuleFor(x => x.Price, f => f.Random.Int(10, 1_000_000));
 
-        var products = productFaker.Generate(50);
+        var products = productFaker.Generate(count);
 
         await dbContext.AddRangeAsync(products);
         await dbContext.SaveChangesAsync();
+        dbContext.ChangeTracker.Clear();
     }
 }

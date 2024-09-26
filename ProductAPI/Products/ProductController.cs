@@ -4,11 +4,6 @@ using ProductAPI.Products;
 
 namespace ProductAPI.Controllers;
 
-// TODO:
-// - testy
-// - comments
-// script na spusteni
-
 [ApiController]
 [Route("[controller]")]
 public class ProductController : ControllerBase

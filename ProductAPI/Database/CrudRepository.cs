@@ -27,7 +27,7 @@ public class CrudRepository<TEntity> : ICrudRepository<TEntity>
 
     public async Task<TEntity?> GetById(Guid id)
     {
-        return await _dbContext.Set<TEntity>().FindAsync(id);
+        return await _dbContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task Add(TEntity entity)
