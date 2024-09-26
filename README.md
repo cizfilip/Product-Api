@@ -5,6 +5,9 @@ Run it with dotnet tool using
 `dotnet run --project ProductAPI/ProductAPI.csproj --configuration Development`
 You can then navigate to swagger page [http://localhost:5298/swagger/index.html](http://localhost:5298/swagger/index.html)
 
+Tests can be run using
+`dotnet test ProductAPI.Tests/ProductAPI.Tests.csproj`
+
 ## Technologies used
 - CRUD API is backed by InMemory provider from Entity Framework
 - Uses Bogus library to seed database
